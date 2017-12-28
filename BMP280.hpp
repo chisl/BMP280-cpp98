@@ -34,7 +34,7 @@ public:
 	
 	/*
 	 * REG DEVID:
-	 * Fixed device ID 
+	 * Fixed device ID
 	 */
 	struct DEVID
 	{
@@ -71,7 +71,7 @@ public:
 	/*
 	 * REG ID:
 	 * The "id" register contains the chip identification number chip_id[7:0], which is 'h58.
-	 *       This number can be read as soon as the device finished the power-on-reset. 
+	 * This number can be read as soon as the device finished the power-on-reset.
 	 */
 	struct ID
 	{
@@ -108,9 +108,9 @@ public:
 	/*
 	 * REG RESET:
 	 * The "reset" register contains the soft reset word reset[7:0].
-	 *       If the value 'hB6 is written to the register, the device is reset using the
-	 *       complete power-on-reset procedure. Writing other values than 'hB6 has no effect.
-	 *       The readout value is always 0x00. 
+	 * If the value 'hB6 is written to the register, the device is reset using the
+	 * complete power-on-reset procedure. Writing other values than 'hB6 has no effect.
+	 * The readout value is always 0x00.
 	 */
 	struct RESET
 	{
@@ -145,7 +145,7 @@ public:
 	
 	/*
 	 * REG STATUS:
-	 * The "status" register contains two bits which indicate the status of the device. 
+	 * The "status" register contains two bits which indicate the status of the device.
 	 */
 	struct STATUS
 	{
@@ -154,7 +154,7 @@ public:
 		/* Bits IM_UPDATE: */
 		/*
 		 * Automatically set to ‘1’ whenever a conversion is running and
-		 *           back to ‘0’ when the results have been transferred to the data registers. 
+		 * back to ‘0’ when the results have been transferred to the data registers.
 		 */
 		struct IM_UPDATE
 		{
@@ -165,8 +165,8 @@ public:
 		/* Bits MEASURING: */
 		/*
 		 * Automatically set to ‘1’ when the NVM data are being copied to image registers
-		 *           and back to ‘0’ when the copying is done. The data are copied at power-on-reset
-		 *           and before every conversion. 
+		 * and back to ‘0’ when the copying is done. The data are copied at power-on-reset
+		 * and before every conversion.
 		 */
 		struct MEASURING
 		{
@@ -197,7 +197,7 @@ public:
 	
 	/*
 	 * REG CTRL_MEAS:
-	 * The "ctrl_meas" register sets the data acquisition options of the device. 
+	 * The "ctrl_meas" register sets the data acquisition options of the device.
 	 */
 	struct CTRL_MEAS
 	{
@@ -234,19 +234,19 @@ public:
 			static const uint8_t mask = 0b00000011; // [0,1]
 			/*
 			 * In sleep mode, no measurements are performed and power consumption (IDDSM)
-			 *               is at a minimum. All registers are accessible. 
+			 * is at a minimum. All registers are accessible.
 			 */
 			static const uint8_t Sleep = 0b00;
 			/*
 			 * In forced mode, a single measurement is performed according to selected
-			 *               measurement and filter options. When the measurement is finished, the sensor
-			 *               returns to sleep mode and the measurement results can be obtained from the
-			 *               data registers. For a next measurement, forced mode needs to be selected again. 
+			 * measurement and filter options. When the measurement is finished, the sensor
+			 * returns to sleep mode and the measurement results can be obtained from the
+			 * data registers. For a next measurement, forced mode needs to be selected again.
 			 */
 			static const uint8_t Forced = 0b01;
 			/*
 			 * Normal mode 16ontinuously cycles between an (active) measurement period
-			 *                 and an (inactive) standby period, whose time is defined by tstandby. 
+			 * and an (inactive) standby period, whose time is defined by tstandby.
 			 */
 			static const uint8_t Normal = 0b00;
 		};
@@ -274,7 +274,7 @@ public:
 	/*
 	 * REG CONFIG:
 	 * The "config" register sets the rate, filter and interface options of the device. Writes to the "config"
-	 *       register in normal mode may be ignored. In sleep mode writes are not ignored. 
+	 * register in normal mode may be ignored. In sleep mode writes are not ignored.
 	 */
 	struct CONFIG
 	{
@@ -340,8 +340,8 @@ public:
 	/*
 	 * REG PRESS:
 	 * The "press" register contains the raw pressure measurement output data up[19:0].
-	 *       For details on how to read out the pressure and temperature information from the device,
-	 *       please consult chapter 3.9.
+	 * For details on how to read out the pressure and temperature information from the device,
+	 * please consult chapter 3.9.
 	 */
 	struct PRESS
 	{
@@ -377,8 +377,8 @@ public:
 	/*
 	 * REG TEMP:
 	 * The "temp" register contains the raw temperature measurement output data ut[19:0].
-	 *       For details on how to read out the pressure and temperature information from the device,
-	 *       please consult chapter 3.9. 
+	 * For details on how to read out the pressure and temperature information from the device,
+	 * please consult chapter 3.9.
 	 */
 	struct TEMP
 	{
