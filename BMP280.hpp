@@ -2,12 +2,17 @@
  * name:        BMP280
  * description: The BMP280 is an absolute barometric pressure sensor especially designed for mobile applications.
  * manuf:       Bosch Sensortec
- * version:     0.1
+ * version:     Version 0.1
  * url:         https://ae-bst.resource.bosch.com/media/_tech/media/datasheets/BST-BMP280-DS001-18.pdf
  * date:        2017-09-02
  * author       https://chisl.io/
  * file:        BMP280.hpp
  */
+
+/*                                                                                                       *
+ *                                   THIS FILE IS AUTOMATICALLY CREATED                                  *
+ *                                    D O     N O T     M O D I F Y  !                                   *
+ *                                                                                                       */
 
 #include <cinttypes>
 
@@ -43,7 +48,7 @@ public:
 		/* Bits DEVID: */
 		struct DEVID_
 		{
-			/* Mode:r */
+			/* MODE r */
 			static const uint8_t dflt = 0b11100101; // 8'b11100101
 			static const uint8_t mask = 0b11111111; // [0,1,2,3,4,5,6,7]
 		};
@@ -80,7 +85,7 @@ public:
 		/* Bits ID: */
 		struct ID_
 		{
-			/* Mode:r */
+			/* MODE r */
 			static const uint8_t dflt = 0b01011000; // 8'h58
 			static const uint8_t mask = 0b11111111; // [0,1,2,3,4,5,6,7]
 		};
@@ -119,6 +124,7 @@ public:
 		/* Bits RESET: */
 		struct RESET_
 		{
+			/* MODE w */
 			static const uint8_t mask = 0b11111111; // [0,1,2,3,4,5,6,7]
 			static const uint8_t Reset = 0xb6; // The device is reset using the complete power-on-reset procedure
 		};
@@ -158,6 +164,7 @@ public:
 		 */
 		struct IM_UPDATE
 		{
+			/* MODE r */
 			static const uint8_t mask = 0b00000001; // [0]
 			static const uint8_t Running = 0b0; // 
 			static const uint8_t Done = 0b1; // 
@@ -170,6 +177,7 @@ public:
 		 */
 		struct MEASURING
 		{
+			/* MODE r */
 			static const uint8_t mask = 0b00001000; // [3]
 			static const uint8_t Running = 0b0; // 
 			static const uint8_t Done = 0b1; // 
@@ -207,6 +215,7 @@ public:
 		/* Controls oversampling of temperature data. See chapter 3.3.2 for details.  */
 		struct OSRS_T
 		{
+			/* MODE rw */
 			static const uint8_t mask = 0b11100000; // [5,6,7]
 			static const uint8_t Skipped = 0b00; // output set to 0x80000
 			static const uint8_t Oversamplingx1 = 0b01; // 
@@ -219,6 +228,7 @@ public:
 		/* Controls oversampling of pressure data. See chapter 3.3.1 for details.  */
 		struct OSRS_P
 		{
+			/* MODE rw */
 			static const uint8_t mask = 0b00011100; // [2,3,4]
 			static const uint8_t Skipped = 0b00; // output set to 0x80000
 			static const uint8_t Oversamplingx1 = 0b01; // 
@@ -231,6 +241,7 @@ public:
 		/* Controls the power mode of the device. See chapter 3.6 for details.  */
 		struct MODE
 		{
+			/* MODE rw */
 			static const uint8_t mask = 0b00000011; // [0,1]
 			/*
 			 * In sleep mode, no measurements are performed and power consumption (IDDSM)
@@ -244,11 +255,12 @@ public:
 			 * data registers. For a next measurement, forced mode needs to be selected again.
 			 */
 			static const uint8_t Forced = 0b01;
+			static const uint8_t Forced2 = 0b10; // same as 2'b01
 			/*
 			 * Normal mode 16ontinuously cycles between an (active) measurement period
 			 * and an (inactive) standby period, whose time is defined by tstandby.
 			 */
-			static const uint8_t Normal = 0b00;
+			static const uint8_t Normal = 0b11;
 		};
 	};
 	
@@ -284,6 +296,7 @@ public:
 		/* Controls inactive duration tstandby in normal mode. See chapter 3.6.3 for details.  */
 		struct T_SB
 		{
+			/* MODE rw */
 			static const uint8_t mask = 0b11100000; // [5,6,7]
 			static const uint8_t tsb0_5 = 0b00; // 0.5ms
 			static const uint8_t tsb62_5 = 0b01; // 62.5ms
@@ -298,6 +311,7 @@ public:
 		/* Controls the time constant of the IIR filter. See chapter 3.3.3 for details.  */
 		struct FILTER
 		{
+			/* MODE rw */
 			static const uint8_t mask = 0b00011100; // [2,3,4]
 			static const uint8_t COEFF_OFF = 0b00; // 1 sample to reach ≥75 % of step response
 			static const uint8_t COEFF_2 = 0b01; // 2 samples to reach ≥75 % of step response
@@ -308,12 +322,14 @@ public:
 		/* Bits unused_0: */
 		struct unused_0
 		{
+			/* MODE rw */
 			static const uint8_t mask = 0b00000010; // [1]
 		};
 		/* Bits SPI3WEN: */
 		/* Enables 3-wire SPI interface when set to ‘1’. See chapter 5.3 for details.  */
 		struct SPI3WEN
 		{
+			/* MODE rw */
 			static const uint8_t mask = 0b00000001; // [0]
 		};
 	};
@@ -351,6 +367,7 @@ public:
 		/* raw pressure measurement output data § */
 		struct PRESS_
 		{
+			/* MODE r */
 			static const uint32_t mask = 0b000011111111111111111111; // [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
 		};
 	};
@@ -388,6 +405,7 @@ public:
 		/* raw temperature measurement output data § */
 		struct TEMP_
 		{
+			/* MODE r */
 			static const uint32_t mask = 0b000011111111111111111111; // [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
 		};
 	};
@@ -420,7 +438,7 @@ public:
 		/* Bits CALIB: */
 		struct CALIB_
 		{
-			/* Mode:r */
+			/* MODE r */
 			static const uint8_t mask[]; // Initialised in .cpp
 		};
 	};
